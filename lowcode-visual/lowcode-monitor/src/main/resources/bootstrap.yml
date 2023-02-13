@@ -1,0 +1,45 @@
+# Tomcat
+server:
+  port: 9001
+
+# Spring
+spring: 
+  application:
+    # 应用名称
+    name: lowcode-monitor
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      # 服务注册地址 配置中心地址
+      server-addr: hadoop102:8848
+      discovery:
+        username: ${spring.profiles.active}
+        password: ${spring.profiles.active}
+        service: ${spring.application.name}
+        enabled: true
+        namespace: a09e1172-e493-4a0b-9f9e-a058b352e8e2
+      config:
+        username: ${spring.profiles.active}
+        password: ${spring.profiles.active}
+        encode: UTF-8
+        enabled: true
+        namespace: a09e1172-e493-4a0b-9f9e-a058b352e8e2
+        file-extension: yml
+        shared-configs: application-common-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+    sentinel:
+      # 取消控制台懒加载
+      eager: true
+      transport:
+        # 控制台地址
+        dashboard: hadoop102:8718
+      # nacos配置持久化
+      datasource:
+        ds1:
+          nacos:
+            server-addr: hadoop102:8848
+            dataId: sentinel-lowcode-monitor
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow

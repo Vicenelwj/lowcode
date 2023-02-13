@@ -1,0 +1,2 @@
+com.lowcode.common.log.service.AsyncLogService
+com.lowcode.common.log.aspect.LogAspect

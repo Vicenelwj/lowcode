@@ -1,0 +1,3 @@
+com.lowcode.common.swagger.config.SwaggerAutoConfiguration
+com.lowcode.common.swagger.config.SwaggerWebConfiguration
+com.lowcode.common.swagger.config.SwaggerBeanPostProcessor
